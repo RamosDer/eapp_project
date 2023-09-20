@@ -18,18 +18,18 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_id_categoria_seq_1")
     @SequenceGenerator(name = "categoria_id_categoria_seq_1", sequenceName = "public.categoria_id_categoria_seq_1", allocationSize = 1)
-    private Integer idCategoria;
+    private Long idCategoria;
 
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     // Getter, setters, etc.
 
-    public Integer getIdCategoria() {
+    public Long getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
+    public void setIdCategoria(Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 

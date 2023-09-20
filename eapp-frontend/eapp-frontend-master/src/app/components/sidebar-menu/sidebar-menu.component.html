@@ -1,0 +1,16 @@
+<div class="sidebar-container">
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <ul>
+            <li>
+                <a (click)="toggleRegistrarSubMenu()">Registrar</a>
+                <ul *ngIf="showRegistrarSubMenu" class="sub-menu">
+                    <li><a routerLink="/palabras">Palabra</a></li>
+                    <li><a routerLink="/frases">Frase</a></li>
+                </ul>
+            </li>
+            <li><a routerLink="/aprender">Aprender</a></li>
+            <li><a routerLink="/editar">Editar Registros</a></li>
+        </ul>
+    </div>
+</div>

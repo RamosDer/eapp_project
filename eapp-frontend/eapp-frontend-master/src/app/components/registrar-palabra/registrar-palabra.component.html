@@ -1,0 +1,101 @@
+<form [formGroup]="formulario" (ngSubmit)="registrar()">
+    
+    <!-- Campo de Texto -->
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Texto</mat-label>
+        <input matInput formControlName="texto">
+        <mat-error *ngIf="formulario.get('texto')?.hasError('required')">Texto es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Significados -->
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Significados</mat-label>
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let significadoControl of significadosArray.controls; let i = index" 
+                      [selectable]="selectable" 
+                      [removable]="removable" 
+                      (removed)="removerSignificado(i)">
+                {{ significadoControl.value }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input matInput [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                   (matChipInputTokenEnd)="agregarSignificadoDesdeEvento($event)">
+        </mat-chip-list>
+        <mat-error *ngIf="formulario.get('significados')?.hasError('required')">Significado es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <!-- Botón para agregar significados -->
+    <button mat-mini-fab color="primary" (click)="agregarSignificadoDesdeBoton()" style="margin: 20px 0;">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <!-- Campo de Tipo -->
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <input matInput formControlName="tipo">
+        <mat-error *ngIf="formulario.get('tipo')?.hasError('required')">Tipo es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Dificultad -->
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Dificultad</mat-label>
+        <input matInput formControlName="dificultad">
+        <mat-error *ngIf="formulario.get('dificultad')?.hasError('required')">Dificultad es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <!-- Botones de Acción -->
+    <div class="buttons-container" style="margin-top: 20px;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">Registrar</button>
+        <button mat-raised-button color="warn" (click)="cancelar()" style="margin-left: 10px;">Cancelar</button>
+    </div>
+</form>
+
+<mat-table [dataSource]="listaPalabras">
+    
+    <!-- Columna de ID -->
+    <ng-container matColumnDef="idPalabraFrase">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.idPalabraFrase}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Contenido -->
+    <ng-container matColumnDef="contenido">
+        <mat-header-cell *matHeaderCellDef> Contenido </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.contenido}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Dificultad -->
+    <ng-container matColumnDef="dificultad">
+        <mat-header-cell *matHeaderCellDef> Dificultad </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.dificultad}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Aprendido -->
+    <ng-container matColumnDef="aprendido">
+        <th mat-header-cell *matHeaderCellDef> Aprendido </th>
+        <td mat-cell *matCellDef="let palabra">
+            <mat-checkbox [checked]="palabra.aprendido" (change)="actualizarAprendido($event, palabra)"></mat-checkbox>
+        </td>
+    </ng-container>
+
+    <!-- Columna de Fecha de Registro -->
+    <ng-container matColumnDef="fechaRegistro">
+        <mat-header-cell *matHeaderCellDef> Fecha de Registro </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.fechaRegistro | date:'medium'}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Tipo (suponiendo que Tipo tiene un campo 'nombre' para representarlo) -->
+    <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let palabra">
+          {{ palabra.tipo.nombre }}
+        </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas y encabezados -->
+    <mat-header-row *matHeaderRowDef="['idPalabraFrase', 'contenido', 'dificultad', 'aprendido', 'fechaRegistro', 'tipo']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['idPalabraFrase', 'contenido', 'dificultad', 'aprendido', 'fechaRegistro', 'tipo']"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+

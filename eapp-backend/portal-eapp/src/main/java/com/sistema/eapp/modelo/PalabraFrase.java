@@ -4,6 +4,7 @@ package com.sistema.eapp.modelo;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "palabra_frase")
 public class PalabraFrase {
@@ -71,12 +72,12 @@ public class PalabraFrase {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
     }
     
 }

@@ -60,7 +60,7 @@ export class RegistrarPalabraComponent implements OnInit, AfterViewInit {
   registrar() {
     if (this.formulario.valid) {
       const palabra = this.formulario.value;
-
+      console.log('Palabra a registrar:', palabra);
       // Cambia la llamada directa a HttpClient por la función del ApiService.
       this.apiService.registrarPalabra(palabra).subscribe(response => {
         alert('Registro exitoso!');

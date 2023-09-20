@@ -27,6 +27,8 @@ public class Tipo implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public Tipo() {}
+
     // Getter, setters, hashCode, equals, toString, etc.
     
 

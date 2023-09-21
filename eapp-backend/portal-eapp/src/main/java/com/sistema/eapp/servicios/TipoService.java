@@ -12,10 +12,10 @@ public interface TipoService {
 
     Tipo guardarTipo(Tipo tipo);
 
-    Optional<Tipo> obtenerPorId(Long id);
+    Optional<Tipo> obtenerPorCodTipo(String codTipo);
 
     List<Tipo> listarTodos();
 
-    void eliminarTipo(Long id);
+    void eliminarTipo(String codTipo);
 
 }

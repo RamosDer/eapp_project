@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.sistema.eapp.servicios.impl;
 
 import com.sistema.eapp.modelo.Tipo;
@@ -24,8 +20,8 @@ public class TipoServiceImpl implements TipoService {
     }
 
     @Override
-    public Optional<Tipo> obtenerPorId(Long id) {
-        return tipoRepository.findById(id);
+    public Optional<Tipo> obtenerPorCodTipo(String codTipo) {
+        return tipoRepository.findById(codTipo); // Cambiado de findByCodTipo a findById
     }
 
     @Override
@@ -34,7 +30,7 @@ public class TipoServiceImpl implements TipoService {
     }
 
     @Override
-    public void eliminarTipo(Long id) {
-        tipoRepository.deleteById(id);
+    public void eliminarTipo(String codTipo) {
+        tipoRepository.deleteById(codTipo); // Cambiado de Long id a String codTipo
     }
 }

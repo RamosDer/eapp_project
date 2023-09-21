@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TipoRepository extends JpaRepository<Tipo, Long> {
+public interface TipoRepository extends JpaRepository<Tipo, String> {
 
     List<Tipo> findByDescripcion(String descripcion);
 

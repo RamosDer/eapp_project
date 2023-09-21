@@ -1,6 +1,8 @@
 package com.sistema.eapp.modelo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,15 +10,14 @@ import javax.persistence.*;
 public class Tipo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tipo_id_tipo_seq")
-    @SequenceGenerator(name = "tipo_id_tipo_seq", sequenceName = "public.tipo_id_tipo_seq", allocationSize = 1)
-    private Integer idTipo;
+    @Column(name = "cod_tipo", nullable = false, length = 10)
+    private String codTipo;
 
     @Column(name = "descripcion", nullable = false, length = 10)
     private String descripcion;
 
-    @Column(name = "cod_tipo", nullable = false, length = 10)
-    private String codTipo;
+    @Column(name = "fecha_registro", nullable = false)
+    private LocalDateTime fechaRegistro;
 
     @ManyToOne(fetch = FetchType.LAZY)  // La carga perezosa es comúnmente utilizada en relaciones ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
@@ -33,14 +34,6 @@ public class Tipo implements Serializable {
     
 
     // Opcional: Si necesitas la relación bidireccional, puedes añadir un conjunto de objetos "Tipo" en la clase "Categoria" y usar la anotación @OneToMany con "mappedBy".
-
-    public Integer getIdTipo() {
-        return idTipo;
-    }
-
-    public void setIdTipo(Integer idTipo) {
-        this.idTipo = idTipo;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -64,5 +57,13 @@ public class Tipo implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 }

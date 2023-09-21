@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.sistema.eapp.controladores;
 
 import com.sistema.eapp.modelo.Tipo;
@@ -25,9 +21,9 @@ public class TipoController {
         return tipoService.guardarTipo(tipo);
     }
 
-    @GetMapping("/{id}")
-    public Tipo obtenerTipo(@PathVariable("id") Long id) {
-        return tipoService.obtenerPorId(id)
+    @GetMapping("/{codTipo}")
+    public Tipo obtenerTipo(@PathVariable("codTipo") String codTipo) {
+        return tipoService.obtenerPorCodTipo(codTipo)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tipo no encontrado"));
     }
 
@@ -36,9 +32,8 @@ public class TipoController {
         return tipoService.listarTodos();
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminarTipo(@PathVariable("id") Long id) {
-        tipoService.eliminarTipo(id);
+    @DeleteMapping("/{codTipo}")
+    public void eliminarTipo(@PathVariable("codTipo") String codTipo) {
+        tipoService.eliminarTipo(codTipo);
     }
 }
-

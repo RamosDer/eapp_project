@@ -27,7 +27,7 @@ public class PalabraFrase {
     private LocalDateTime fechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo", nullable = false)
+    @JoinColumn(name = "cod_tipo", referencedColumnName = "cod_tipo", nullable = false)
     private Tipo tipo;
 
     // Getter, setters, etc.

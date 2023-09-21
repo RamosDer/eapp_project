@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PalabraFraseServiceImpl implements PalabraFraseService {
@@ -48,6 +49,8 @@ public class PalabraFraseServiceImpl implements PalabraFraseService {
             palabraFrase.setTipo(tiposExistente.get(0));
         } else {
             Tipo nuevoTipo = new Tipo(descripcionTipo);
+            // Aquí deberías generar y asignar un codTipo único
+            nuevoTipo.setCodTipo(generateUniqueCodTipo());
             // Guarda el nuevo Tipo en la base de datos antes de asignarlo a la PalabraFrase.
             nuevoTipo = tipoRepository.save(nuevoTipo);
             palabraFrase.setTipo(nuevoTipo);
@@ -55,4 +58,10 @@ public class PalabraFraseServiceImpl implements PalabraFraseService {
 
         return palabraFraseRepository.save(palabraFrase);
     }
+
+    private String generateUniqueCodTipo() {
+        // Implementa una lógica para generar un codTipo único, por ejemplo, un UUID o alguna otra estrategia.
+        return UUID.randomUUID().toString().substring(0, 10);
+    }
+
 }

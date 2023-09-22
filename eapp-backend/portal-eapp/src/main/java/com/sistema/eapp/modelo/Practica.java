@@ -23,9 +23,6 @@ public class Practica {
     @JoinColumn(name = "id_oracion")
     private Oracion oracion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_tipo")
-    private Tipo tipo;
 
     @Column(name = "fecha_practica", nullable = false)
     private LocalDateTime fechaPractica;
@@ -67,13 +64,6 @@ public class Practica {
         this.oracion = oracion;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
 
     public LocalDateTime getFechaPractica() {
         return fechaPractica;

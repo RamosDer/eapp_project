@@ -12,21 +12,15 @@ public class Oracion {
     @SequenceGenerator(name = "oracion_id_oracion_seq", sequenceName = "public.oracion_id_oracion_seq", allocationSize = 1)
     private Long idOracion;
 
-    @Column(name = "contenido", nullable = false)
+    @Column(name = "texto", nullable = false)
     private String contenido;
-
-    @Column(name = "dificultad", nullable = false, length = 10)
-    private String dificultad;
-
-    @Column(name = "aprendido", nullable = false)
-    private Boolean aprendido;
 
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "cod_tipo", nullable = false)
-    private Tipo tipo;
+    @JoinColumn(name = "id_palabra_frase", nullable = false)
+    private PalabraFrase palabraFrase;
 
     // Getter, setters, etc.
 
@@ -46,22 +40,6 @@ public class Oracion {
         this.contenido = contenido;
     }
 
-    public String getDificultad() {
-        return dificultad;
-    }
-
-    public void setDificultad(String dificultad) {
-        this.dificultad = dificultad;
-    }
-
-    public Boolean getAprendido() {
-        return aprendido;
-    }
-
-    public void setAprendido(Boolean aprendido) {
-        this.aprendido = aprendido;
-    }
-
     public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
@@ -70,11 +48,11 @@ public class Oracion {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setPalabraFrase(PalabraFrase palabraFrase) {
+        this.palabraFrase = palabraFrase;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public PalabraFrase getPalabraFrase() {
+        return palabraFrase;
     }
 }

@@ -23,7 +23,7 @@ import { authInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
-import { RegistrarPalabraComponent } from './components/registrar-palabra/registrar-palabra.component';
+import { RegistrarPalabraComponent } from './pages/registrar-palabra/registrar-palabra.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';

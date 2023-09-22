@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { ApiService } from '../../services/api.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { PalabraFraseService } from 'src/app/services/palabraFrase.service';
+import { PalabraFrase } from 'src/app/modelos/palabraFrase.model';
 
 @Component({
   selector: 'app-registrar-palabra',
@@ -30,7 +32,9 @@ export class RegistrarPalabraComponent implements OnInit, AfterViewInit {
       private apiService: ApiService, 
       private router: Router, 
       private formBuilder: FormBuilder,
-      private cdr: ChangeDetectorRef
+      private cdr: ChangeDetectorRef,
+      private palabraFraseService: PalabraFraseService,
+      private route: ActivatedRoute
   ) {
     this.significados = this.formBuilder.array([]);
     this.listaAprendido = this.formBuilder.array([]);
@@ -43,6 +47,13 @@ export class RegistrarPalabraComponent implements OnInit, AfterViewInit {
         nuevoSignificado: [''],
         listaAprendido: this.listaAprendido
     });
+
+    const id = this.route.snapshot.params['idPalabraFrase'];
+      if (id) {
+        this.palabraFraseService.obtenerPalabraPorId(id).subscribe(response => {
+            console.log('Palabra obtenida: ', response);
+      });
+    }
   }
 
   ngOnInit(): void {}

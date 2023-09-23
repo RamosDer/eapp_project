@@ -12,16 +12,16 @@ import { Observable } from 'rxjs';
 })
 export class PalabraFraseService {
 
-  private apiUrl = 'http://localhost:8080/palabras';
-  private apiSignificadosUrl = 'http://localhost:8080/significados';
+  private apiBaseUrl = 'http://localhost:8080';  
+  private apiUrl = '${this.apiBaseUrl}/palabras';
+  private apiSignificadosUrl = '${this.apiBaseUrl}/significados';
 
   constructor(private http: HttpClient) { }
 
+  // sería como guardar palabra
   registrarPalabra(palabra: PalabraFrase) {
     return this.http.post<PalabraFrase>(this.apiUrl, palabra)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
     // Obtener una palabra o frase por ID

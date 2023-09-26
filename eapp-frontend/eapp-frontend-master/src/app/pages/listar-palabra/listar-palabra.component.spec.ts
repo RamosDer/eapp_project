@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListarPalabraComponent } from './listar-palabra.component';
 
 
-describe('RegistrarPalabraComponent', () => {
+describe('ListarPalabraComponent', () => {
   let component: ListarPalabraComponent;
   let fixture: ComponentFixture<ListarPalabraComponent>;
 

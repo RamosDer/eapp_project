@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { PalabraFrase } from '../modelos/palabraFrase.model';
 import { Significado } from '../modelos/significado.model';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { Observable } from 'rxjs';
-
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +11,32 @@ import { Observable } from 'rxjs';
 export class PalabraFraseService {
 
   private apiBaseUrl = 'http://localhost:8080';  
-  private apiUrl = '${this.apiBaseUrl}/palabras';
-  private apiSignificadosUrl = '${this.apiBaseUrl}/significados';
+  private apiUrl = `${this.apiBaseUrl}/palabras`;  // Cambiado a template string.
+  private apiSignificadosUrl = `${this.apiBaseUrl}/significados`;  // Cambiado a template string.
 
   constructor(private http: HttpClient) { }
 
-  // sería como guardar palabra
-  registrarPalabra(palabra: PalabraFrase) {
+  registrarPalabra(palabra: PalabraFrase): Observable<PalabraFrase> {
     return this.http.post<PalabraFrase>(this.apiUrl, palabra)
       .pipe(catchError(this.handleError));
   }
 
-    // Obtener una palabra o frase por ID
-  obtenerPalabraPorId(id: number): Observable<any> {  
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  obtenerPalabraPorId(id: number): Observable<PalabraFrase> {
+    return this.http.get<PalabraFrase>(`${this.apiUrl}/${id}`);
   }
 
-  agregarSignificado(significado: Significado) {
+  agregarSignificado(significado: Significado): Observable<Significado> {
     return this.http.post<Significado>(this.apiSignificadosUrl, significado)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
+  }
+
+  obtenerTodasLasPalabras(): Observable<PalabraFrase[]> {
+    return this.http.get<PalabraFrase[]>(this.apiUrl)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: any) {
-    console.error('Ocurrió un error:', error); //  manejar el error de una forma más adecuada
+    console.error('Ocurrió un error:', error);
     return throwError('Algo salió mal, por favor intenta de nuevo más tarde.');
   }
 

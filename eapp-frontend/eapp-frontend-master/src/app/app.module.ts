@@ -23,12 +23,13 @@ import { authInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
-import { RegistrarPalabraComponent } from './pages/registrar-palabra/registrar-palabra.component';
+import { ListarPalabraComponent } from './pages/listar-palabra/listar-palabra.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DialogoNuevaPalabraComponent } from './pages/dialogo-nueva-palabra/dialogo-nueva-palabra.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DashboardComponent,
     UserDashboardComponent,
     SidebarMenuComponent,
-    RegistrarPalabraComponent
+    ListarPalabraComponent,
+    DialogoNuevaPalabraComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegistrarPalabraComponent } from './pages/registrar-palabra/registrar-palabra.component';
+import { RegistrarPalabraComponent } from './pages/listar-palabra/listar-palabra.component';
 
 const routes: Routes = [
   {

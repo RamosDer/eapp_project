@@ -1,0 +1,49 @@
+<mat-form-field class="example-full-width" appearance="outline" style="margin-bottom: 20px;">
+    <mat-label>Buscar</mat-label>
+    <input matInput #inputValue (keyup)="filtrarPalabras(inputValue.value)">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="abrirDialogoRegistro()">Añadir Nueva Palabra/Frase</button>
+
+
+<mat-table [dataSource]="listaPalabras">
+    
+    <!-- Columna de ID -->
+    <ng-container matColumnDef="idPalabraFrase">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.idPalabraFrase}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Contenido -->
+    <ng-container matColumnDef="contenido">
+        <mat-header-cell *matHeaderCellDef> Contenido </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.contenido}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Dificultad -->
+    <ng-container matColumnDef="dificultad">
+        <mat-header-cell *matHeaderCellDef> Dificultad </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.dificultad}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Fecha de Registro -->
+    <ng-container matColumnDef="fechaRegistro">
+        <mat-header-cell *matHeaderCellDef> Fecha de Registro </mat-header-cell>
+        <mat-cell *matCellDef="let palabra"> {{palabra.fechaRegistro | date:'medium'}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Tipo (suponiendo que Tipo tiene un campo 'nombre' para representarlo) -->
+    <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let palabra">
+          {{ palabra.tipo.nombre }}
+        </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas y encabezados -->
+    <mat-header-row *matHeaderRowDef="['idPalabraFrase', 'contenido', 'dificultad', 'aprendido', 'fechaRegistro', 'tipo']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['idPalabraFrase', 'contenido', 'dificultad', 'fechaRegistro', 'tipo']"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+

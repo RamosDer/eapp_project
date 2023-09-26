@@ -29,6 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DialogoNuevaPalabraComponent } from './pages/dialogo-nueva-palabra/dialogo-nueva-palabra.component';
 
 
@@ -62,7 +63,8 @@ import { DialogoNuevaPalabraComponent } from './pages/dialogo-nueva-palabra/dial
     MatPaginatorModule,
     ReactiveFormsModule,
     MatChipsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

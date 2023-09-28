@@ -11,8 +11,8 @@ import { throwError, Observable } from 'rxjs';
 export class PalabraFraseService {
 
   private apiBaseUrl = 'http://localhost:8080';  
-  private apiUrl = `${this.apiBaseUrl}/palabras`;  // Cambiado a template string.
-  private apiSignificadosUrl = `${this.apiBaseUrl}/significados`;  // Cambiado a template string.
+  private apiUrl = `${this.apiBaseUrl}/palabras`;  
+  private apiSignificadosUrl = `${this.apiBaseUrl}/significados`;  
 
   constructor(private http: HttpClient) { }
 

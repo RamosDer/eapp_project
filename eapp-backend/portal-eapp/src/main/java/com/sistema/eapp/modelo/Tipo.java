@@ -19,7 +19,7 @@ public class Tipo implements Serializable {
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
-    @ManyToOne(fetch = FetchType.LAZY)  // La carga perezosa es comúnmente utilizada en relaciones ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)  
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 

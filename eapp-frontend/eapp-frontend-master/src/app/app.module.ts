@@ -31,7 +31,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogoNuevaPalabraComponent } from './pages/dialogo-nueva-palabra/dialogo-nueva-palabra.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { DialogoNuevaPalabraComponent } from './pages/dialogo-nueva-palabra/dial
     ReactiveFormsModule,
     MatChipsModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
